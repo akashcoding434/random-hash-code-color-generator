@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            /*background-image:linear-gradient(to right,rgb(92,145,229),rgb(152,63,198));*/
+            background-image:linear-gradient(to right top,#051937,#004d7a,#008793,#00bf72,#a8eb12);
+        }
+        h1{
+           color:aliceblue;
+        }
+        button{
+            padding: 10px;
+            width:130px;
+            border-radius: 16px;
+            cursor: pointer;
+            border: none;
+        }
+        button:hover{
+            box-shadow: 10px 2px 8px rgb(12, 18, 28);
+        }
+        #mybtn1{
+            background-color: darkslateblue;
+            color:white;
+            font-weight:600;
+        }
+        #mybtn2{
+            background-color:rgb(7, 32, 80);
+            color:white;
+            font-weight:600;
+        }
+        .bgbox{
+            width:260px;
+            height: fit-content;
+            padding: 10px;
+            background-image:linear-gradient(to right top,#051937,#004d7a,#008793,#00bf72,#a8eb12);
+            backdrop-filter: 2;
+            color: white;
+        }
+        h2{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;margin-top: 10px;font-family: verdana;font-weight: 700;">Rabdom Color Generator</h1>
+    <section>
+        <div style="display: flex;gap:18px;">
+            <button id="mybtn1">#3c5678</button>
+            <button id="mybtn2">#89789c</button>
+        </div>
+        <h2 style="text-align: center;cursor: pointer;">Copy to clip board</h2>
+        <div class="bgbox">
+            background-image:linear-gradient(to right,rgb(92,145,229),rgb(152,63,198))   
+        </div>
+        <button style="margin-top: 16px;margin-left: 25%;" id="cp">Copy Code</button>
+    </section>
+    <script>
+        let mybtn1=document.querySelector("#mybtn1");
+        let mybtn2=document.querySelector("#mybtn2");
+        let bgBox=document.querySelector('.bgbox');
+        let copyText=document.querySelector("#cp");
+        let h1=document.querySelector("h1");
+        let colors="#004773";
+        let colors1="#54d542";
+        const handleBtn=()=>{
+            let number="0123456789abcdef";
+            colors="#";
+            for(let i=0;i<6;i++){
+                colors=colors+number[Math.floor(Math.random()*16)];
+            }
+            mybtn1.innerHTML=colors;
+            document.body.style.backgroundImage=`linear-gradient(to right,${colors},${colors1})`;
+            bgBox.innerHTML=` background-image:linear-gradient(to right,${colors},${colors1})`;
+            
+        }
+        const handleBtn2=()=>{
+            let number="0123456789abcdef";
+            colors1="#";
+            for(let i=0;i<6;i++){
+                 colors1=colors1+number[Math.floor(Math.random()*16)];
+            }
+            mybtn2.innerHTML=colors1;
+            document.body.style.backgroundImage=`linear-gradient(to right,${colors1},${colors})`;
+            bgBox.innerHTML=` background-image:linear-gradient(to right,${colors1},${colors})`;
+        }
+        mybtn1.addEventListener('click',handleBtn);
+        mybtn2.addEventListener('click',handleBtn2);
+        cp.onclick=()=>{
+            navigator.clipboard.writeText(bgBox.innerHTML);
+            alert(`copy the text ${bgBox.innerHTML}`);
+        }
+        
+            
+        
+    </script>
+</body>
+</html>
